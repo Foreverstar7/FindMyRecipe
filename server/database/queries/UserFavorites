@@ -1,0 +1,1 @@
+select * from recipes where id in ( select recipe_id from user_favorites where user_id = @userId);

@@ -1,0 +1,14 @@
+select * from recipes
+where id in (select matchIngredient.id from
+  ((select id from recipes)
+    except
+  (select distinct recipe_id from recipe_ingredient
+    where not (ingredient_id = any (cast(@ingredient_ids as int[])))))
+  as matchIngredient
+  join
+  (select recipe_id from recipe_tag
+    where tag_id = any (cast(@tag_ids as int[]))
+    group by recipe_id
+    having count(tag_id) >= @tag_count) as matchTag
+  on matchIngredient.id = matchTag.recipe_id);
+

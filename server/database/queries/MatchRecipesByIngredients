@@ -1,0 +1,6 @@
+SELECT * FROM recipes
+WHERE id IN ((SELECT id FROM recipes)
+  EXCEPT
+  (SELECT DISTINCT recipe_id FROM recipe_ingredient
+    WHERE NOT (ingredient_id = ANY (CAST(@ingredient_ids AS INT[]))))
+  );

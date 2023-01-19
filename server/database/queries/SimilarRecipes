@@ -1,0 +1,9 @@
+((SELECT id FROM recipes)
+  EXCEPT
+  (SELECT DISTINCT recipe_id FROM recipe_ingredient
+    WHERE NOT (ingredient_id = ANY (CAST(@fridge1 AS INT[])))))
+EXCEPT
+((SELECT id FROM recipes)
+  EXCEPT
+  (SELECT DISTINCT recipe_id FROM recipe_ingredient
+    WHERE NOT (ingredient_id = ANY (CAST(@fridge2 AS INT[])))));

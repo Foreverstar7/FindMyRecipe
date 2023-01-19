@@ -1,0 +1,12 @@
+--wip/abandoned for now
+TRUNCATE TABLE recipes, recipe_ingredient, recipe_tag;
+BEGIN TRY;
+  BEGIN TRANSACTION;
+  INSERT INTO recipes VALUES();
+  INSERT INTO recipe_ingredient VALUES;
+  INSERT INTO recipe_tag VALUES();
+  COMMIT TRANSACTION;
+END TRY;
+BEGIN CATCH;
+  ROLLBACK TRANSACTION;
+END CATCH;

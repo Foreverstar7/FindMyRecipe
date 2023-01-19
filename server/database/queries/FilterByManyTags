@@ -1,0 +1,6 @@
+select * from recipes
+where id in (select recipe_id from recipe_tag
+  where tag_id = any (cast(@tag_ids as int[]))
+  group by recipe_id
+  having count(tag_id) >= @tag_count
+  limit 10);

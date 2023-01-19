@@ -1,0 +1,1 @@
+INSERT INTO user_favorites(user_id,recipe_id) VALUES @values;

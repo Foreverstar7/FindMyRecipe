@@ -1,0 +1,3 @@
+select * from recipes
+  where id in (select recipe_id from recipe_tag
+    where tag_id = @tag_id);
